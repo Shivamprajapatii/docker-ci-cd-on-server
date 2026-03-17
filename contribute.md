@@ -23,8 +23,6 @@
 
 - Build the Image 
     - docker build -t myapp .
-- Note (You can directly pass the network during building)
-    - docker build --network my_custom_network -t myapp .
 - Start the Image 
     - docker run -d --name mywebapp --network my_custom_network -p 3000:3000 fullstackapp
 
