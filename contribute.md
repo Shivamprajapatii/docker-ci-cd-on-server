@@ -19,7 +19,7 @@
 - Create Docker Network using this 
     - docker create network my_custom_network
 - Install Postgres and run
-    - docker run -d --name postgres -p 5432:5432 --network my_custom_network -e POSTGRES_PASSWORD=mysecret -e POSTGRES_DB=userdb -v postgres_data:/var/lib/postgresqldata postgres 
+    - docker run -d --name postgres -p 5432:5432 --network my_custom_network -e POSTGRES_PASSWORD=mysecret -e POSTGRES_DB=userdb -v postgres_data:/var/lib/postgresql postgres 
 
 - Build the Image 
     - docker build -t myapp .
@@ -33,4 +33,7 @@
 
 - Install Docker, Docker Compose 
 - Run 
-    - docker compose up
+    - docker compose up --build
+    - docker compose up 
+    - docker compose -p my-node-app up 
+    

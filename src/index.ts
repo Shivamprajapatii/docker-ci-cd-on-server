@@ -51,6 +51,7 @@ app.post("/users", async (req, res) => {
 async function startServer() {
   try {
     await prismaClient.$connect();
+     await prismaClient.$queryRaw`SELECT 1`;
     console.log("✅ Database connected successfully");
 
     app.listen(3000, () => {
