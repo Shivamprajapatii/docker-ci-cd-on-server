@@ -13,6 +13,5 @@ model User {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-
-  image    String?   @default("https://res.cloudinary.com/dzjzj0r8c/image/upload/v1701304417/default-profile-picture-1_oyh5lq.png")
+  image    String?   @default("https://res.cloudinary.com/h5lq.png")
 }
