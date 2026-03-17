@@ -16,11 +16,15 @@
 
 ## Docer Installation Steps
 - Install Docker 
-- Install Postgres 
+- Create Docker Network using this 
+    - docker create network my_custom_network
+- Install Postgres and run
     - docker run -d --name postgres -p 5432:5432 --network my_custom_network -e POSTGRES_PASSWORD=mysecret -e POSTGRES_DB=userdb -v postgres_data:/var/lib/postgresql postgres 
 
 - Build the Image 
     - docker build -t myapp .
+- Note (You can directly pass the network during building)
+    - docker build --network my_custom_network -t myapp .
 - Start the Image 
     - docker run -d --name mywebapp --network my_custom_network -p 3000:3000 fullstackapp
 
