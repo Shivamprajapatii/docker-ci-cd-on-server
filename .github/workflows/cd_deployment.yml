@@ -1,0 +1,27 @@
+name: Deploy the Backend Application  ## Just a Pipeline Name that will display in the Actions Tab of GitHub
+
+on:
+  push:
+    branches : [ main ] ## Whenever you push code to main branch, pipeline will start automatically.
+
+jobs: 
+  build: 
+    runs-on: ubuntu-latest   ## GitHub will create a temporary virtual machine (runner) with Ubuntu OS to run the pipeline.
+                             # Your pipeline runs inside this machine.
+    steps:
+      - name: Checkout the code  # This downloads GitHub repo code into the runner machine. Without this → Docker build cannot happen because it needs the Dockerfile and source code to build the image.
+        uses: actions/checkout@v2
+      
+      - name: Docker Login in Runner Machine
+        uses: docker/login-action@v2
+        with:
+          username: ${{secrets.DOCKERHUB_USERNAME}} 
+          password: ${{secrets.DOCKERHUB_TOKEN}}  # Here pipeline logs into DockerHub.Credentials are stored in: 👉 GitHub Repo → Settings → Secrets
+
+      - name: Build and Push Docker Image to DockerHub
+        uses: docker/build-push-action@v4
+        with:
+          context: .  # Build from project root.
+          file: ./Dockerfile # Use this Dockerfile.
+          push: true  # After building the image, push it to DockerHub.
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/backend-app:${{ github.sha }}  # Tag of the image to be pushed to DockerHub. It will be in the format: username/repository:tag
