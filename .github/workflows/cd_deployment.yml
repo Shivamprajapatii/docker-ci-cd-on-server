@@ -25,6 +25,3 @@ jobs:
           file: ./Dockerfile # Use this Dockerfile.
           push: true  # After building the image, push it to DockerHub.
           tags: ${{secrets.DOCKERHUB_USERNAME}}/backend-app:${{ github.sha }}  # Tag of the image to be pushed to DockerHub. It will be in the format: username/repository:tag
-
-      - name: Debug Secret
-        run: echo "USERNAME=${{ secrets.DOCKERHUB_USERNAME }}"

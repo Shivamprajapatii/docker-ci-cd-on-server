@@ -25,6 +25,12 @@ app.get("/", (req, res) => {
     });
 });
 
+app.get("/metrix", (req, res) => {
+    res.send({
+        message : "This is the metrix endpoint"
+    });
+});
+
 app.get("/users", async (req, res) => {
     const users = await prismaClient.user.findMany();
     res.json({
